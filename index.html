@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haar Ateliier — Friseurmeisterin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   KONFIGURATION — hier alles anpassen (Namen, Texte, Preise,
+   Instagram-Links, Kontaktdaten). Kein Code-Wissen nötig.
+   ============================================================ */
+
+:root{
+  --ink:#0a0a0a;
+  --paper:#f6f5f2;
+  --grey:#8a897f;
+  --line:#d8d7d0;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--ink);color:var(--paper);}
+
+.label{
+  font-family:'Space Grotesk',monospace;
+  font-size:12px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--grey);
+}
+
+/* ---------- Cut-line signature element ---------- */
+.cutline{
+  position:relative;
+  width:100%;
+  height:1px;
+  background:var(--ink);
+  overflow:visible;
+  margin:0;
+}
+.cutline::after{
+  content:"✂";
+  position:absolute;
+  top:50%;
+  left:0;
+  transform:translate(-50%,-50%);
+  font-size:14px;
+  background:var(--paper);
+  padding:0 6px;
+  animation:slide 9s linear infinite;
+}
+@keyframes slide{
+  0%{left:0;}
+  100%{left:100%;}
+}
+@media (prefers-reduced-motion: reduce){
+  .cutline::after{animation:none; left:50%;}
+}
+
+/* ---------- Marquee ticker ---------- */
+.marquee{
+  width:100%;
+  overflow:hidden;
+  background:var(--ink);
+  padding:16px 0;
+}
+.marquee-track{
+  display:flex;
+  width:max-content;
+  animation:marquee 22s linear infinite;
+}
+.marquee-track span{
+  font-family:'Fraunces',serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:22px;
+  color:var(--paper);
+  white-space:nowrap;
+  padding:0 28px;
+}
+.marquee-track span.dot{
+  font-family:'Inter',sans-serif;
+  font-style:normal;
+  opacity:.5;
+}
+@keyframes marquee{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-50%);}
+}
+@media (prefers-reduced-motion: reduce){
+  .marquee-track{animation:none;}
+}
+
+/* ---------- Nav ---------- */
+nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:50;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:28px 6vw;
+  mix-blend-mode:difference;
+  color:var(--paper);
+}
+.nav-name{
+  font-family:'Fraunces',serif;
+  font-size:18px;
+  letter-spacing:0.02em;
+}
+nav a{color:var(--paper);text-decoration:none;}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;}
+
+/* ---------- Hero ---------- */
+.hero{
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:0 6vw;
+  position:relative;
+}
+.hero-eyebrow{margin-bottom:22px;}
+.hero h1{
+  font-family:'Fraunces',serif;
+  font-weight:300;
+  font-size:clamp(52px,11vw,152px);
+  line-height:0.92;
+  letter-spacing:-0.01em;
+  overflow:hidden;
+}
+.hero h1 .line{
+  display:block;
+  overflow:hidden;
+}
+.hero h1 .line span{
+  display:block;
+  transform:translateY(110%);
+  animation:lineUp 1s cubic-bezier(.2,.8,.2,1) forwards;
+}
+.hero h1 .line:nth-child(2) span{animation-delay:.12s;}
+.hero h1 em{font-style:italic;font-weight:400;}
+@keyframes lineUp{
+  to{transform:translateY(0);}
+}
+.hero-eyebrow, .hero-sub, .hero-cta{
+  opacity:0;
+  animation:fadeUp .8s ease forwards;
+}
+.hero-eyebrow{animation-delay:.05s;}
+.hero-sub{animation-delay:.55s;}
+.hero-cta{animation-delay:.75s;}
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(14px);}
+  to{opacity:1; transform:translateY(0);}
+}
+.hero-sub{
+  margin-top:28px;
+  max-width:480px;
+  font-size:16px;
+  line-height:1.6;
+  color:#3a3a38;
+}
+.hero-cta{
+  margin-top:44px;
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+  width:fit-content;
+  font-family:'Space Grotesk',monospace;
+  font-size:13px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:var(--ink);
+  padding-bottom:6px;
+  border-bottom:1px solid var(--ink);
+}
+.hero-cta span.arrow{transition:transform .3s ease;}
+.hero-cta:hover span.arrow{transform:translateX(6px);}
+@media (prefers-reduced-motion: reduce){
+  .hero h1 .line span{animation:none; transform:translateY(0);}
+  .hero-eyebrow, .hero-sub, .hero-cta{animation:none; opacity:1; transform:none;}
+}
+
+/* ---------- Sections ---------- */
+section{padding:120px 6vw;}
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-bottom:64px;
+  gap:24px;
+  flex-wrap:wrap;
+}
+.section-head h2{
+  font-family:'Fraunces',serif;
+  font-weight:300;
+  font-size:clamp(34px,5vw,58px);
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1);
+}
+.reveal.is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+@media (prefers-reduced-motion: reduce){
+  .reveal{opacity:1; transform:none; transition:none;}
+}
+.service-row.reveal:nth-of-type(1){transition-delay:0s;}
+.service-row.reveal:nth-of-type(2){transition-delay:.06s;}
+.service-row.reveal:nth-of-type(3){transition-delay:.12s;}
+.service-row.reveal:nth-of-type(4){transition-delay:.18s;}
+.service-row.reveal:nth-of-type(5){transition-delay:.24s;}
+
+/* ---------- Leistungen ---------- */
+.service-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  padding:26px 0;
+  border-bottom:1px solid var(--line);
+  gap:24px;
+  transition:padding-left .35s cubic-bezier(.2,.8,.2,1), background .35s ease;
+}
+.service-row:hover{
+  padding-left:16px;
+  background:linear-gradient(90deg, rgba(10,10,10,.04), transparent 60%);
+}
+.service-row:first-of-type{border-top:1px solid var(--line);}
+.service-name{
+  font-family:'Fraunces',serif;
+  font-size:22px;
+  font-weight:400;
+  transition:font-style .35s ease;
+}
+.service-row:hover .service-name{font-style:italic;}
+.service-desc{
+  font-size:13px;
+  color:var(--grey);
+  margin-top:4px;
+}
+.service-price{
+  font-family:'Space Grotesk',monospace;
+  font-size:16px;
+  white-space:nowrap;
+}
+.service-group{margin-bottom:56px;}
+.service-group:last-child{margin-bottom:0;}
+.service-category{
+  font-family:'Space Grotesk',monospace;
+  font-size:12px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--grey);
+  margin-bottom:6px;
+}
+
+/* ---------- Instagram ---------- */
+.insta-intro{
+  max-width:520px;
+  font-size:15px;
+  color:#3a3a38;
+  margin-bottom:48px;
+  line-height:1.6;
+}
+.insta-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.insta-embed-wrap{
+  border:1px solid var(--line);
+  background:#fff;
+  min-height:400px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  transition:transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease;
+}
+.insta-embed-wrap:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 40px rgba(10,10,10,.12);
+}
+.insta-fallback{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  padding:40px 20px;
+  text-align:center;
+}
+.insta-fallback a{
+  font-family:'Space Grotesk',monospace;
+  font-size:12px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--ink);
+  border-bottom:1px solid var(--ink);
+  text-decoration:none;
+  padding-bottom:3px;
+}
+.insta-follow{
+  margin-top:48px;
+  display:inline-flex;
+  gap:14px;
+  align-items:center;
+  font-family:'Space Grotesk',monospace;
+  font-size:13px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:var(--ink);
+  border-bottom:1px solid var(--ink);
+  padding-bottom:6px;
+}
+
+@media(max-width:860px){
+  .insta-grid{grid-template-columns:1fr;}
+}
+
+/* ---------- Kontakt ---------- */
+.contact-grid{
+  display:grid;
+  grid-template-columns:1.3fr 1fr;
+  gap:60px;
+}
+.contact-block{margin-bottom:36px;}
+.contact-block h3{
+  font-family:'Space Grotesk',monospace;
+  font-size:12px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--grey);
+  margin-bottom:10px;
+}
+.contact-block p, .contact-block a{
+  font-family:'Fraunces',serif;
+  font-size:22px;
+  color:var(--ink);
+  text-decoration:none;
+  line-height:1.5;
+}
+.hours-row{
+  display:flex;
+  justify-content:space-between;
+  padding:12px 0;
+  border-bottom:1px solid var(--line);
+  font-size:14px;
+}
+.hours-row:first-child{border-top:1px solid var(--line);}
+@media(max-width:760px){
+  .contact-grid{grid-template-columns:1fr;gap:8px;}
+}
+
+footer{
+  padding:36px 6vw;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-family:'Space Grotesk',monospace;
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--grey);
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+/* focus visibility */
+a:focus-visible, button:focus-visible{outline:2px solid var(--ink);outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#top" class="nav-name">HAAR ATELIER</a>
+  <div class="nav-links">
+    <a href="#leistungen">Leistungen</a>
+    <a href="#instagram">Instagram</a>
+    <a href="#kontakt">Kontakt</a>
+  </div>
+</nav>
+
+<div id="top"></div>
+
+<!-- ================= HERO ================= -->
+<section class="hero" style="padding-top:100px;">
+  <div class="hero-eyebrow label">Tuba Kayar — Friseurmeisterin, Gaildorf</div>
+  <h1>
+    <span class="line"><span>Schnitt.</span></span>
+    <span class="line"><span><em>Klar.</em> Reduziert.</span></span>
+  </h1>
+  <p class="hero-sub">
+    Professionelle Produkte für professionelle Ergebnisse — mit Wella und Glynt
+    für Qualität und Präzision, damit dein Haar jeden Tag überzeugt.
+  </p>
+  <a href="#kontakt" class="hero-cta">Termin anfragen <span class="arrow">→</span></a>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Haarschnitt</span><span class="dot">—</span>
+    <span>Farbe&amp;Tönung</span><span class="dot">—</span>
+    <span>Braut&amp;Anlässe</span><span class="dot">—</span>
+    <span>Haarschnitt</span><span class="dot">—</span>
+    <span>Farbe&amp;Tönung</span><span class="dot">—</span>
+    <span>Braut&amp;Anlässe</span><span class="dot">—</span>
+  </div>
+</div>
+
+<div class="cutline"></div>
+
+<!-- ================= LEISTUNGEN ================= -->
+<section id="leistungen">
+  <div class="section-head reveal">
+    <h2>Leistungen</h2>
+    <div class="label">Preisliste</div>
+  </div>
+
+  <div class="service-group">
+    <div class="service-category reveal">Herren</div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Haarschnitt</div></div>
+      <div class="service-price">25&nbsp;€</div>
+    </div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Haarschnitt nur Seiten</div></div>
+      <div class="service-price">22&nbsp;€</div>
+    </div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Maschinenhaarschnitt</div></div>
+      <div class="service-price">20&nbsp;€</div>
+    </div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Jungen bis 12 Jahre</div></div>
+      <div class="service-price">20&nbsp;€</div>
+    </div>
+  </div>
+
+  <div class="service-group">
+    <div class="service-category reveal">Damen</div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Waschen, Föhnen</div></div>
+      <div class="service-price">30&nbsp;€</div>
+    </div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Waschen, Schneiden, Föhnen</div></div>
+      <div class="service-price">50&nbsp;€</div>
+    </div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Mädchen bis 12 Jahre</div></div>
+      <div class="service-price">30&nbsp;€</div>
+    </div>
+  </div>
+
+  <div class="service-group">
+    <div class="service-category reveal">Farbe &amp; Tönung</div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Ansatz färben</div></div>
+      <div class="service-price">ab 50&nbsp;€</div>
+    </div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Tönung / Intensivtönung</div></div>
+      <div class="service-price">ab 50&nbsp;€</div>
+    </div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Strähnen Oberkopf</div></div>
+      <div class="service-price">ab 80&nbsp;€</div>
+    </div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Strähnen ganzer Kopf</div></div>
+      <div class="service-price">ab 100&nbsp;€</div>
+    </div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Balayage</div></div>
+      <div class="service-price">auf Anfrage, ab 150&nbsp;€</div>
+    </div>
+  </div>
+
+  <div class="service-group">
+    <div class="service-category reveal">Pflege</div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Haarkur</div></div>
+      <div class="service-price">7&nbsp;€</div>
+    </div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Dauerwelle</div></div>
+      <div class="service-price">ab 100&nbsp;€</div>
+    </div>
+  </div>
+
+  <div class="service-group">
+    <div class="service-category reveal">Augen &amp; Wimpern</div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Augenbrauen zupfen (Fadentechnik)</div></div>
+      <div class="service-price">10&nbsp;€</div>
+    </div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Augenbrauen färben</div></div>
+      <div class="service-price">10&nbsp;€</div>
+    </div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Wimpern färben</div></div>
+      <div class="service-price">10&nbsp;€</div>
+    </div>
+  </div>
+
+  <div class="service-group">
+    <div class="service-category reveal">Braut &amp; Anlässe</div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Hochsteckfrisur</div></div>
+      <div class="service-price">60&nbsp;€</div>
+    </div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Waves / Wellen</div></div>
+      <div class="service-price">60&nbsp;€</div>
+    </div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Henna Night / Verlobung</div></div>
+      <div class="service-price">100&nbsp;€</div>
+    </div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Standesamt</div></div>
+      <div class="service-price">100&nbsp;€</div>
+    </div>
+    <div class="service-row reveal">
+      <div><div class="service-name">Braut (ohne Probe)</div></div>
+      <div class="service-price">150&nbsp;€</div>
+    </div>
+  </div>
+</section>
+
+<div class="cutline"></div>
+
+<!-- ================= INSTAGRAM ================= -->
+<section id="instagram">
+  <div class="section-head reveal">
+    <h2>Aktuelles</h2>
+    <div class="label">@haar_ateliier</div>
+  </div>
+  <p class="insta-intro reveal">
+    Die neuesten Looks direkt aus dem Instagram-Feed — läuft live, ohne dass wir
+    hier manuell etwas nachpflegen müssen.
+  </p>
+
+  <div class="insta-grid reveal">
+
+    <!-- Post 1: URL unten ersetzen -->
+    <div class="insta-embed-wrap">
+      <blockquote class="instagram-media"
+        data-instgrm-permalink="https://www.instagram.com/reel/C8C6osAtBxt/"
+        data-instgrm-version="14"
+        style="margin:0;width:100%;">
+        <div class="insta-fallback">
+          <div class="label">Post wird geladen …</div>
+          <a href="https://www.instagram.com/haar_ateliier/" target="_blank" rel="noopener">Auf Instagram ansehen</a>
+        </div>
+      </blockquote>
+    </div>
+
+    <!-- Post 2 -->
+    <div class="insta-embed-wrap">
+      <blockquote class="instagram-media"
+        data-instgrm-permalink="https://www.instagram.com/reel/C9IpBiTu9Fs/"
+        data-instgrm-version="14"
+        style="margin:0;width:100%;">
+        <div class="insta-fallback">
+          <div class="label">Post wird geladen …</div>
+          <a href="https://www.instagram.com/haar_ateliier/" target="_blank" rel="noopener">Auf Instagram ansehen</a>
+        </div>
+      </blockquote>
+    </div>
+
+    <!-- Post 3 (auch für Reels geeignet: einfach Reel-Link einsetzen) -->
+    <div class="insta-embed-wrap">
+      <blockquote class="instagram-media"
+        data-instgrm-permalink="https://www.instagram.com/reel/DYnIyeFMXRI/"
+        data-instgrm-version="14"
+        style="margin:0;width:100%;">
+        <div class="insta-fallback">
+          <div class="label">Reel wird geladen …</div>
+          <a href="https://www.instagram.com/haar_ateliier/" target="_blank" rel="noopener">Auf Instagram ansehen</a>
+        </div>
+      </blockquote>
+    </div>
+
+  </div>
+
+  <a class="insta-follow" href="https://www.instagram.com/haar_ateliier/" target="_blank" rel="noopener">
+    Mehr auf Instagram <span class="arrow">→</span>
+  </a>
+</section>
+
+<div class="cutline"></div>
+
+<!-- ================= KONTAKT ================= -->
+<section id="kontakt">
+  <div class="section-head reveal">
+    <h2>Kontakt</h2>
+  </div>
+
+  <div class="contact-grid reveal">
+    <div>
+      <div class="contact-block">
+        <h3>Standort</h3>
+        <p>Sperlingweg 1<br>74405 Gaildorf</p>
+      </div>
+      <div class="contact-block">
+        <h3>Telefon &amp; WhatsApp</h3>
+        <a href="tel:+4917663822020">0176 638 22 020</a>
+      </div>
+      <div class="contact-block">
+        <h3>WhatsApp</h3>
+        <a href="https://wa.me/4917663822020" target="_blank" rel="noopener">Chat starten →</a>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--grey);margin-bottom:14px;">Termine</h3>
+      <p style="font-size:15px;line-height:1.7;color:#3a3a38;max-width:320px;">
+        Terminvergabe ausschließlich nach Vereinbarung — am einfachsten per WhatsApp
+        oder Anruf unter 0176&nbsp;638&nbsp;22&nbsp;020.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Haar Atelier — Tuba Kayar</span>
+  <span>Instagram @haar_ateliier</span>
+</footer>
+
+<!-- Instagram Embed Script — läd Live-Posts -->
+<script async src="//www.instagram.com/embed.js"></script>
+
+<script>
+  // Scroll-Reveal: Elemente blenden ein, sobald sie in den Viewport kommen
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced) {
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+  }
+</script>
+
+</body>
+</html>

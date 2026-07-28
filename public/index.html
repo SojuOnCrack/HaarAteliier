@@ -4,6 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Haar Ateliier — Friseurmeisterin</title>
+
+<meta name="description" content="Haar Atelier — Tuba Kayar, Friseurmeisterin in Gaildorf. Damen- und Herrenschnitt, Farbe & Tönung, Braut- und Anlassstyling. Termine per WhatsApp oder Telefon.">
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/favicon.svg">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Haar Atelier — Friseurmeisterin Gaildorf">
+<meta property="og:description" content="Damen- und Herrenschnitt, Farbe & Tönung, Braut- und Anlassstyling. Termine per WhatsApp oder Telefon.">
+<meta property="og:image" content="/og-image.png">
+<meta property="og:url" content="https://haaratelieer.magicthedrinkering.com/">
+<meta property="og:locale" content="de_DE">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Haar Atelier — Friseurmeisterin Gaildorf">
+<meta name="twitter:description" content="Damen- und Herrenschnitt, Farbe & Tönung, Braut- und Anlassstyling.">
+<meta name="twitter:image" content="/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
@@ -101,6 +118,34 @@ body{
 @media (prefers-reduced-motion: reduce){
   .marquee-track{animation:none;}
 }
+@media(max-width:600px){
+  .marquee-track span{font-size:16px;padding:0 18px;}
+}
+
+/* ---------- WhatsApp float button ---------- */
+.wa-float{
+  position:fixed;
+  right:24px;
+  bottom:24px;
+  z-index:60;
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  background:var(--ink);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 8px 24px rgba(10,10,10,.28);
+  transition:transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease;
+}
+.wa-float svg{width:24px;height:24px;fill:var(--paper);}
+.wa-float:hover{
+  transform:scale(1.08) translateY(-2px);
+  box-shadow:0 14px 32px rgba(10,10,10,.34);
+}
+@media(max-width:600px){
+  .wa-float{right:16px;bottom:16px;width:50px;height:50px;}
+}
 
 /* ---------- Nav ---------- */
 nav{
@@ -126,6 +171,16 @@ nav{
 nav a{color:var(--ink);text-decoration:none;}
 .nav-links{display:flex;gap:28px;}
 .nav-links a{font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;}
+
+@media(max-width:600px){
+  nav{padding:18px 5vw;}
+  .nav-name{font-size:15px;}
+  .nav-links{gap:14px;}
+  .nav-links a{font-size:9.5px;letter-spacing:0.06em;}
+}
+@media(max-width:400px){
+  .nav-links{gap:10px;}
+}
 
 /* ---------- Hero ---------- */
 .hero{
@@ -387,6 +442,26 @@ section{padding:120px 6vw;}
   .contact-grid{grid-template-columns:1fr;gap:8px;}
 }
 
+.map-wrap{
+  margin-top:64px;
+  width:100%;
+  height:360px;
+  border:1px solid var(--line);
+  overflow:hidden;
+  filter:grayscale(1) contrast(1.08) brightness(1.02);
+  transition:filter .5s ease;
+}
+.map-wrap:hover{filter:grayscale(0.15) contrast(1.05);}
+.map-wrap iframe{
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+}
+@media(max-width:600px){
+  .map-wrap{height:280px;margin-top:44px;}
+}
+
 footer{
   padding:36px 6vw;
   display:flex;
@@ -442,8 +517,6 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--ink);outline-offse
     <span>Braut&amp;Anlässe</span><span class="dot">—</span>
   </div>
 </div>
-
-<div class="cutline"></div>
 
 <!-- ================= LEISTUNGEN ================= -->
 <section id="leistungen">
@@ -573,7 +646,6 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--ink);outline-offse
     <h2>Aktuelles</h2>
     <div class="label">@haar_ateliier</div>
   </div>
-  
   <div class="insta-grid reveal">
 
     <!-- Post 1: URL unten ersetzen -->
@@ -654,12 +726,29 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--ink);outline-offse
       </p>
     </div>
   </div>
+
+  <div class="map-wrap reveal">
+    <iframe
+      src="https://maps.google.com/maps?q=Sperlingweg%201%2C%2074405%20Gaildorf&t=&z=15&ie=UTF8&iwloc=&output=embed"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Standort Haar Atelier">
+    </iframe>
+  </div>
 </section>
 
 <footer>
   <span>© 2026 Haar Atelier — Tuba Kayar</span>
+  <span style="display:flex;gap:18px;">
+    <a href="impressum.html" style="color:var(--grey);text-decoration:none;">Impressum</a>
+    <a href="datenschutz.html" style="color:var(--grey);text-decoration:none;">Datenschutz</a>
+  </span>
   <span>Instagram @haar_ateliier</span>
 </footer>
+
+<a class="wa-float" href="https://wa.me/4917663822020" target="_blank" rel="noopener" aria-label="WhatsApp Nachricht schreiben">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.02c-.24.68-1.4 1.31-1.93 1.36-.5.05-1.12.29-3.75-.78-3.17-1.29-5.2-4.48-5.36-4.69-.16-.21-1.29-1.71-1.29-3.27s.81-2.32 1.1-2.64c.28-.31.62-.39.82-.39.21 0 .41 0 .59.01.19.01.44-.07.69.53.24.6.83 2.08.9 2.23.07.15.12.33.02.53-.1.21-.15.33-.29.51-.15.18-.31.4-.44.54-.15.15-.3.31-.13.6.17.29.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.34 1.44.29.15.46.13.64-.07.18-.21.75-.87.96-1.17.2-.29.4-.24.67-.15.28.1 1.75.83 2.05.98.29.15.49.22.56.35.07.13.07.75-.17 1.42z"/></svg>
+</a>
 
 <!-- Instagram Embed Script — läd Live-Posts -->
 <script async src="//www.instagram.com/embed.js"></script>

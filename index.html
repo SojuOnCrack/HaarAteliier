@@ -110,16 +110,20 @@ nav{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:28px 6vw;
-  mix-blend-mode:difference;
-  color:var(--paper);
+  padding:24px 6vw;
+  background:rgba(246,245,242,.7);
+  backdrop-filter:blur(14px) saturate(160%);
+  -webkit-backdrop-filter:blur(14px) saturate(160%);
+  border-bottom:1px solid rgba(10,10,10,.08);
+  color:var(--ink);
+  transition:background .3s ease, border-color .3s ease;
 }
 .nav-name{
   font-family:'Fraunces',serif;
   font-size:18px;
   letter-spacing:0.02em;
 }
-nav a{color:var(--paper);text-decoration:none;}
+nav a{color:var(--ink);text-decoration:none;}
 .nav-links{display:flex;gap:28px;}
 .nav-links a{font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;}
 
@@ -287,18 +291,22 @@ section{padding:120px 6vw;}
   gap:24px;
 }
 .insta-embed-wrap{
-  border:1px solid var(--line);
-  background:#fff;
+  border:none;
+  background:transparent;
   min-height:400px;
   display:flex;
   align-items:center;
   justify-content:center;
   overflow:hidden;
+  border-radius:2px;
   transition:transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease;
 }
 .insta-embed-wrap:hover{
   transform:translateY(-6px);
-  box-shadow:0 18px 40px rgba(10,10,10,.12);
+}
+.insta-embed-wrap iframe{
+  border-radius:2px !important;
+  box-shadow:none !important;
 }
 .insta-fallback{
   display:flex;

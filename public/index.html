@@ -200,14 +200,14 @@ nav a{color:var(--ink);text-decoration:none;}
   min-height:100svh;
   display:flex;
   flex-direction:column;
-  justify-content:center;
+  justify-content:flex-end;
   padding:0 6vw;
   position:relative;
   isolation:isolate;
   background:
-    linear-gradient(90deg, rgba(10,10,10,.78) 0%, rgba(10,10,10,.52) 38%, rgba(10,10,10,.18) 72%, rgba(10,10,10,.08) 100%),
-    url("WhatsApp%20Image%202026-07-28%20at%201.27.47%20PM%20(8).jpeg") center / cover no-repeat;
-  color:var(--paper);
+    linear-gradient(180deg, rgba(246,245,242,.04) 0%, rgba(246,245,242,.08) 52%, rgba(246,245,242,.96) 100%),
+    url("og-image.png") center / cover no-repeat;
+  color:var(--ink);
 }
 .hero::after{
   content:"";
@@ -218,28 +218,6 @@ nav a{color:var(--ink);text-decoration:none;}
   background:linear-gradient(180deg, transparent, var(--paper));
 }
 .hero-eyebrow{margin-bottom:22px;}
-.hero h1{
-  font-family:'Fraunces',serif;
-  font-weight:300;
-  font-size:clamp(52px,11vw,152px);
-  line-height:0.92;
-  letter-spacing:-0.01em;
-  overflow:hidden;
-}
-.hero h1 .line{
-  display:block;
-  overflow:hidden;
-}
-.hero h1 .line span{
-  display:block;
-  transform:translateY(110%);
-  animation:lineUp 1s cubic-bezier(.2,.8,.2,1) forwards;
-}
-.hero h1 .line:nth-child(2) span{animation-delay:.12s;}
-.hero h1 em{font-style:italic;font-weight:400;}
-@keyframes lineUp{
-  to{transform:translateY(0);}
-}
 .hero-eyebrow, .hero-sub, .hero-cta{
   opacity:0;
   animation:fadeUp .8s ease forwards;
@@ -256,10 +234,11 @@ nav a{color:var(--ink);text-decoration:none;}
   max-width:480px;
   font-size:16px;
   line-height:1.6;
-  color:rgba(246,245,242,.86);
+  color:#3a3a38;
 }
 .hero-cta{
   margin-top:44px;
+  margin-bottom:clamp(52px,9vh,96px);
   display:inline-flex;
   align-items:center;
   gap:14px;
@@ -269,14 +248,13 @@ nav a{color:var(--ink);text-decoration:none;}
   letter-spacing:0.1em;
   text-transform:uppercase;
   text-decoration:none;
-  color:var(--paper);
+  color:var(--ink);
   padding-bottom:6px;
-  border-bottom:1px solid var(--paper);
+  border-bottom:1px solid var(--ink);
 }
 .hero-cta span.arrow{transition:transform .3s ease;}
 .hero-cta:hover span.arrow{transform:translateX(6px);}
 @media (prefers-reduced-motion: reduce){
-  .hero h1 .line span{animation:none; transform:translateY(0);}
   .hero-eyebrow, .hero-sub, .hero-cta{animation:none; opacity:1; transform:none;}
 }
 
@@ -750,10 +728,6 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--ink);outline-offse
 <!-- ================= HERO ================= -->
 <section class="hero" style="padding-top:100px;">
   <div class="hero-eyebrow label">Tuba Kayar — Friseurmeisterin, Gaildorf</div>
-  <h1>
-    <span class="line"><span>Schnitt.</span></span>
-    <span class="line"><span><em>Klar.</em> Reduziert.</span></span>
-  </h1>
   <p class="hero-sub">
     Professionelle Produkte für professionelle Ergebnisse — mit Wella und Glynt
     für Qualität und Präzision, damit dein Haar jeden Tag überzeugt.

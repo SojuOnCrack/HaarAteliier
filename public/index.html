@@ -177,21 +177,21 @@ nav{
   letter-spacing:0.02em;
 }
 nav a{color:var(--ink);text-decoration:none;}
-.nav-links{display:flex;gap:28px;justify-content:flex-end;flex-wrap:wrap;}
+.nav-links{display:flex;gap:18px 24px;justify-content:flex-end;flex-wrap:wrap;}
 .nav-links a{font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;}
 
 @media(max-width:760px){
-  .nav-links{gap:12px 16px;}
-  .nav-links a{font-size:10.5px;letter-spacing:0.07em;}
+  nav{align-items:flex-start;}
+  .nav-links{gap:9px 14px;}
+  .nav-links a{font-size:10px;letter-spacing:0.05em;}
 }
 @media(max-width:600px){
   nav{padding:18px 5vw;}
   .nav-name{font-size:15px;min-width:82px;}
-  .nav-links{gap:9px 12px;}
-  .nav-links a{font-size:9px;letter-spacing:0.04em;}
+  .nav-links{gap:8px 10px;}
+  .nav-links a{font-size:8.6px;letter-spacing:0.03em;}
 }
 @media(max-width:400px){
-  nav{align-items:flex-start;}
   .nav-links{gap:8px 10px;}
 }
 
@@ -741,6 +741,7 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--ink);outline-offse
     <a href="#galerie">Galerie</a>
     <a href="#instagram">Instagram</a>
     <a href="#kontakt">Kontakt</a>
+    <a href="impressum.html">Impressum</a>
   </div>
 </nav>
 

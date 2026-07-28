@@ -21,9 +21,6 @@
 <meta name="twitter:title" content="Haar Atelier — Friseurmeisterin Gaildorf">
 <meta name="twitter:description" content="Damen- und Herrenschnitt, Farbe & Tönung, Braut- und Anlassstyling.">
 <meta name="twitter:image" content="/og-image.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
 <style>
 
 /* ============================================================
@@ -458,8 +455,117 @@ section{padding:120px 6vw;}
   border:0;
   display:block;
 }
+.map-wrap iframe:not([src]){
+  display:none;
+}
 @media(max-width:600px){
   .map-wrap{height:280px;margin-top:44px;}
+}
+
+/* ---------- Consent ---------- */
+.needs-consent:not(.is-consented) .insta-embed-wrap{
+  display:none;
+}
+.consent-placeholder{
+  width:100%;
+  min-height:220px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.32);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  padding:32px 22px;
+  text-align:center;
+  color:#3a3a38;
+}
+.insta-grid .consent-placeholder{
+  grid-column:1 / -1;
+  min-height:260px;
+}
+.map-wrap .consent-placeholder{
+  height:100%;
+}
+.needs-consent.is-consented > .consent-placeholder{
+  display:none;
+}
+.consent-placeholder p{
+  max-width:560px;
+  font-size:15px;
+  line-height:1.6;
+}
+.consent-btn{
+  border:1px solid var(--ink);
+  background:var(--ink);
+  color:var(--paper);
+  font-family:'Space Grotesk',monospace;
+  font-size:12px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  padding:12px 18px;
+  cursor:pointer;
+}
+.consent-btn.secondary{
+  background:transparent;
+  color:var(--ink);
+}
+.cookie-banner{
+  position:fixed;
+  left:24px;
+  right:24px;
+  bottom:24px;
+  z-index:100;
+  display:none;
+  grid-template-columns:1fr auto;
+  gap:22px;
+  align-items:center;
+  max-width:980px;
+  margin:0 auto;
+  padding:20px;
+  border:1px solid rgba(10,10,10,.16);
+  background:rgba(246,245,242,.94);
+  box-shadow:0 18px 48px rgba(10,10,10,.18);
+  backdrop-filter:blur(14px) saturate(160%);
+  -webkit-backdrop-filter:blur(14px) saturate(160%);
+}
+.cookie-banner.is-visible{
+  display:grid;
+}
+.cookie-copy h2{
+  font-family:'Fraunces',serif;
+  font-size:24px;
+  font-weight:400;
+  margin-bottom:6px;
+}
+.cookie-copy p{
+  font-size:13px;
+  line-height:1.55;
+  color:#3a3a38;
+}
+.cookie-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.footer-consent{
+  border:0;
+  background:transparent;
+  color:var(--grey);
+  font:inherit;
+  letter-spacing:inherit;
+  text-transform:inherit;
+  cursor:pointer;
+}
+@media(max-width:760px){
+  .cookie-banner{
+    left:14px;
+    right:14px;
+    bottom:14px;
+    grid-template-columns:1fr;
+  }
+  .cookie-actions{justify-content:flex-start;}
 }
 
 footer{
@@ -646,7 +752,12 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--ink);outline-offse
     <h2>Aktuelles</h2>
     <div class="label">@haar_ateliier</div>
   </div>
-  <div class="insta-grid reveal">
+  <div class="insta-grid reveal needs-consent" data-consent-area="external-media">
+    <div class="consent-placeholder" data-consent-placeholder>
+      <div class="label">Externe Inhalte</div>
+      <p>Instagram-Beitr&auml;ge werden erst geladen, wenn Sie externe Medien erlauben. Dabei k&ouml;nnen Daten an Meta &uuml;bertragen werden.</p>
+      <button class="consent-btn" type="button" data-consent-accept>Externe Medien erlauben</button>
+    </div>
 
     <!-- Post 1: URL unten ersetzen -->
     <div class="insta-embed-wrap">
@@ -727,9 +838,14 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--ink);outline-offse
     </div>
   </div>
 
-  <div class="map-wrap reveal">
+  <div class="map-wrap reveal needs-consent" data-consent-area="external-media">
+    <div class="consent-placeholder" data-consent-placeholder>
+      <div class="label">Google Maps</div>
+      <p>Die Karte wird erst geladen, wenn Sie externe Medien erlauben. Dabei k&ouml;nnen Daten an Google &uuml;bertragen werden.</p>
+      <button class="consent-btn" type="button" data-consent-accept>Externe Medien erlauben</button>
+    </div>
     <iframe
-      src="https://maps.google.com/maps?q=Sperlingweg%201%2C%2074405%20Gaildorf&t=&z=15&ie=UTF8&iwloc=&output=embed"
+      data-src="https://maps.google.com/maps?q=Sperlingweg%201%2C%2074405%20Gaildorf&t=&z=15&ie=UTF8&iwloc=&output=embed"
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"
       title="Standort Haar Atelier">
@@ -742,6 +858,7 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--ink);outline-offse
   <span style="display:flex;gap:18px;">
     <a href="impressum.html" style="color:var(--grey);text-decoration:none;">Impressum</a>
     <a href="datenschutz.html" style="color:var(--grey);text-decoration:none;">Datenschutz</a>
+    <button class="footer-consent" type="button" data-consent-open>Cookie-Einstellungen</button>
   </span>
   <span>Instagram @haar_ateliier</span>
 </footer>
@@ -750,10 +867,65 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--ink);outline-offse
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.02c-.24.68-1.4 1.31-1.93 1.36-.5.05-1.12.29-3.75-.78-3.17-1.29-5.2-4.48-5.36-4.69-.16-.21-1.29-1.71-1.29-3.27s.81-2.32 1.1-2.64c.28-.31.62-.39.82-.39.21 0 .41 0 .59.01.19.01.44-.07.69.53.24.6.83 2.08.9 2.23.07.15.12.33.02.53-.1.21-.15.33-.29.51-.15.18-.31.4-.44.54-.15.15-.3.31-.13.6.17.29.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.34 1.44.29.15.46.13.64-.07.18-.21.75-.87.96-1.17.2-.29.4-.24.67-.15.28.1 1.75.83 2.05.98.29.15.49.22.56.35.07.13.07.75-.17 1.42z"/></svg>
 </a>
 
-<!-- Instagram Embed Script — läd Live-Posts -->
-<script async src="//www.instagram.com/embed.js"></script>
+<div class="cookie-banner" data-cookie-banner role="dialog" aria-live="polite" aria-label="Cookie-Einstellungen">
+  <div class="cookie-copy">
+    <h2>Externe Inhalte</h2>
+    <p>Diese Seite kann Instagram-Beitr&auml;ge und Google Maps anzeigen. Diese Inhalte werden erst nach Ihrer Zustimmung geladen; dabei k&ouml;nnen Daten an Meta und Google &uuml;bertragen werden.</p>
+  </div>
+  <div class="cookie-actions">
+    <button class="consent-btn secondary" type="button" data-consent-reject>Ablehnen</button>
+    <button class="consent-btn" type="button" data-consent-accept>Erlauben</button>
+  </div>
+</div>
 
 <script>
+  // Consent fuer externe Medien: blockiert Instagram und Google Maps bis zur Zustimmung.
+  const consentKey = 'haarAtelierExternalMediaConsent';
+  const banner = document.querySelector('[data-cookie-banner]');
+  const consentAreas = document.querySelectorAll('[data-consent-area="external-media"]');
+
+  function loadExternalMedia(){
+    consentAreas.forEach(area => area.classList.add('is-consented'));
+
+    document.querySelectorAll('iframe[data-src]').forEach(frame => {
+      if (!frame.src) frame.src = frame.dataset.src;
+    });
+
+    if (!document.querySelector('script[data-instagram-embed]')) {
+      const instagramScript = document.createElement('script');
+      instagramScript.async = true;
+      instagramScript.src = 'https://www.instagram.com/embed.js';
+      instagramScript.dataset.instagramEmbed = 'true';
+      document.body.appendChild(instagramScript);
+    } else if (window.instgrm?.Embeds) {
+      window.instgrm.Embeds.process();
+    }
+  }
+
+  function setConsent(value){
+    const wasAccepted = localStorage.getItem(consentKey) === 'accepted';
+    localStorage.setItem(consentKey, value);
+    banner.classList.remove('is-visible');
+    if (value === 'accepted') loadExternalMedia();
+    if (value === 'rejected' && wasAccepted) window.location.reload();
+  }
+
+  if (localStorage.getItem(consentKey) === 'accepted') {
+    loadExternalMedia();
+  } else if (!localStorage.getItem(consentKey)) {
+    banner.classList.add('is-visible');
+  }
+
+  document.querySelectorAll('[data-consent-accept]').forEach(button => {
+    button.addEventListener('click', () => setConsent('accepted'));
+  });
+  document.querySelectorAll('[data-consent-reject]').forEach(button => {
+    button.addEventListener('click', () => setConsent('rejected'));
+  });
+  document.querySelectorAll('[data-consent-open]').forEach(button => {
+    button.addEventListener('click', () => banner.classList.add('is-visible'));
+  });
+
   // Scroll-Reveal: Elemente blenden ein, sobald sie in den Viewport kommen
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!prefersReduced) {

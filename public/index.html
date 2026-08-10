@@ -201,12 +201,15 @@ nav a{color:var(--ink);text-decoration:none;}
   display:flex;
   flex-direction:column;
   justify-content:flex-end;
-  padding:0 6vw;
+  padding:100px 6vw 0;
   position:relative;
   isolation:isolate;
-  background:
+  background-image:
     linear-gradient(180deg, rgba(246,245,242,.04) 0%, rgba(246,245,242,.08) 52%, rgba(246,245,242,.96) 100%),
-    url("og-image.png") center / cover no-repeat;
+    url("og-image.png");
+  background-position:center, center;
+  background-size:100% 100%, cover;
+  background-repeat:no-repeat;
   color:var(--ink);
 }
 .hero::after{
@@ -254,6 +257,26 @@ nav a{color:var(--ink);text-decoration:none;}
 }
 .hero-cta span.arrow{transition:transform .3s ease;}
 .hero-cta:hover span.arrow{transform:translateX(6px);}
+@media(max-width:600px){
+  .hero{
+    min-height:74svh;
+    padding:72px 5vw 0;
+    background-position:center, center 58px;
+    background-size:100% 100%, min(112vw, 520px) auto;
+  }
+  .hero-eyebrow{margin-bottom:18px;}
+  .hero-sub{
+    margin-top:18px;
+    max-width:360px;
+    font-size:15px;
+    line-height:1.55;
+  }
+  .hero-cta{
+    margin-top:28px;
+    margin-bottom:34px;
+    font-size:11px;
+  }
+}
 @media (prefers-reduced-motion: reduce){
   .hero-eyebrow, .hero-sub, .hero-cta{animation:none; opacity:1; transform:none;}
 }
@@ -726,7 +749,7 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--ink);outline-offse
 <div id="top"></div>
 
 <!-- ================= HERO ================= -->
-<section class="hero" style="padding-top:100px;">
+<section class="hero">
   <div class="hero-eyebrow label">Tuba Kayar — Friseurmeisterin, Gaildorf</div>
   <p class="hero-sub">
     Professionelle Produkte für professionelle Ergebnisse — mit Wella und Glynt
@@ -811,11 +834,11 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--ink);outline-offse
         </div>
         <div class="about-fact">
           <span class="label">Telefon</span>
-          <a href="tel:+4917663822020">0176 638 22 020</a>
+          <a href="tel:+4917663822020" data-config-phone>0176 638 22 020</a>
         </div>
         <div class="about-fact">
           <span class="label">Instagram</span>
-          <a href="https://www.instagram.com/haar_ateliier/" target="_blank" rel="noopener">@haar_ateliier</a>
+          <a href="https://www.instagram.com/haar_ateliier/" target="_blank" rel="noopener" data-config-instagram-profile data-config-instagram-label>@haar_ateliier</a>
         </div>
       </div>
     </div>
@@ -1026,7 +1049,7 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--ink);outline-offse
 <section id="instagram">
   <div class="section-head reveal">
     <h2>Aktuelles</h2>
-    <div class="label">@haar_ateliier</div>
+    <div class="label" data-config-instagram-label>@haar_ateliier</div>
   </div>
   <div class="insta-grid reveal needs-consent" data-consent-area="external-media">
     <div class="consent-placeholder" data-consent-placeholder>
@@ -1038,12 +1061,13 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--ink);outline-offse
     <!-- Post 1: URL unten ersetzen -->
     <div class="insta-embed-wrap">
       <blockquote class="instagram-media"
+        data-config-instagram-post="0"
         data-instgrm-permalink="https://www.instagram.com/reel/C8C6osAtBxt/"
         data-instgrm-version="14"
         style="margin:0;width:100%;">
         <div class="insta-fallback">
           <div class="label">Post wird geladen …</div>
-          <a href="https://www.instagram.com/haar_ateliier/" target="_blank" rel="noopener">Auf Instagram ansehen</a>
+          <a href="https://www.instagram.com/haar_ateliier/" target="_blank" rel="noopener" data-config-instagram-profile>Auf Instagram ansehen</a>
         </div>
       </blockquote>
     </div>
@@ -1051,12 +1075,13 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--ink);outline-offse
     <!-- Post 2 -->
     <div class="insta-embed-wrap">
       <blockquote class="instagram-media"
+        data-config-instagram-post="1"
         data-instgrm-permalink="https://www.instagram.com/reel/C9IpBiTu9Fs/"
         data-instgrm-version="14"
         style="margin:0;width:100%;">
         <div class="insta-fallback">
           <div class="label">Post wird geladen …</div>
-          <a href="https://www.instagram.com/haar_ateliier/" target="_blank" rel="noopener">Auf Instagram ansehen</a>
+          <a href="https://www.instagram.com/haar_ateliier/" target="_blank" rel="noopener" data-config-instagram-profile>Auf Instagram ansehen</a>
         </div>
       </blockquote>
     </div>
@@ -1064,19 +1089,20 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--ink);outline-offse
     <!-- Post 3 (auch für Reels geeignet: einfach Reel-Link einsetzen) -->
     <div class="insta-embed-wrap">
       <blockquote class="instagram-media"
+        data-config-instagram-post="2"
         data-instgrm-permalink="https://www.instagram.com/reel/DYnIyeFMXRI/"
         data-instgrm-version="14"
         style="margin:0;width:100%;">
         <div class="insta-fallback">
           <div class="label">Reel wird geladen …</div>
-          <a href="https://www.instagram.com/haar_ateliier/" target="_blank" rel="noopener">Auf Instagram ansehen</a>
+          <a href="https://www.instagram.com/haar_ateliier/" target="_blank" rel="noopener" data-config-instagram-profile>Auf Instagram ansehen</a>
         </div>
       </blockquote>
     </div>
 
   </div>
 
-  <a class="insta-follow" href="https://www.instagram.com/haar_ateliier/" target="_blank" rel="noopener">
+  <a class="insta-follow" href="https://www.instagram.com/haar_ateliier/" target="_blank" rel="noopener" data-config-instagram-profile>
     Mehr auf Instagram <span class="arrow">→</span>
   </a>
 </section>
@@ -1097,15 +1123,15 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--ink);outline-offse
       </div>
       <div class="contact-block">
         <h3>Telefon &amp; WhatsApp</h3>
-        <a href="tel:+4917663822020">0176 638 22 020</a>
+        <a href="tel:+4917663822020" data-config-phone>0176 638 22 020</a>
       </div>
       <div class="contact-block">
         <h3>E-Mail</h3>
-        <a href="mailto:info@haaratelier-gaildorf.de">info@haaratelier-gaildorf.de</a>
+        <a href="mailto:info@haaratelier-gaildorf.de" data-config-email>info@haaratelier-gaildorf.de</a>
       </div>
       <div class="contact-block">
         <h3>WhatsApp</h3>
-        <a href="https://wa.me/4917663822020" target="_blank" rel="noopener">Chat starten →</a>
+        <a href="https://wa.me/4917663822020" target="_blank" rel="noopener" data-config-whatsapp>Chat starten →</a>
       </div>
     </div>
 
@@ -1125,6 +1151,7 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--ink);outline-offse
       <button class="consent-btn" type="button" data-consent-accept>Externe Medien erlauben</button>
     </div>
     <iframe
+      data-config-map
       data-src="https://maps.google.com/maps?q=Sperlingweg%201%2C%2074405%20Gaildorf&t=&z=15&ie=UTF8&iwloc=&output=embed"
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"
@@ -1140,10 +1167,10 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--ink);outline-offse
     <a href="datenschutz.html" style="color:var(--grey);text-decoration:none;">Datenschutz</a>
     <button class="footer-consent" type="button" data-consent-open>Cookie-Einstellungen</button>
   </span>
-  <span>Instagram @haar_ateliier</span>
+  <span>Instagram <span data-config-instagram-label>@haar_ateliier</span></span>
 </footer>
 
-<a class="wa-float" href="https://wa.me/4917663822020" target="_blank" rel="noopener" aria-label="WhatsApp Nachricht schreiben">
+<a class="wa-float" href="https://wa.me/4917663822020" target="_blank" rel="noopener" aria-label="WhatsApp Nachricht schreiben" data-config-whatsapp>
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.02c-.24.68-1.4 1.31-1.93 1.36-.5.05-1.12.29-3.75-.78-3.17-1.29-5.2-4.48-5.36-4.69-.16-.21-1.29-1.71-1.29-3.27s.81-2.32 1.1-2.64c.28-.31.62-.39.82-.39.21 0 .41 0 .59.01.19.01.44-.07.69.53.24.6.83 2.08.9 2.23.07.15.12.33.02.53-.1.21-.15.33-.29.51-.15.18-.31.4-.44.54-.15.15-.3.31-.13.6.17.29.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.34 1.44.29.15.46.13.64-.07.18-.21.75-.87.96-1.17.2-.29.4-.24.67-.15.28.1 1.75.83 2.05.98.29.15.49.22.56.35.07.13.07.75-.17 1.42z"/></svg>
 </a>
 
@@ -1159,6 +1186,70 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--ink);outline-offse
 </div>
 
 <script>
+  /*
+    ============================================================
+    HIER LINKS UND KONTAKTDATEN AENDERN
+    ============================================================
+    Wenn du neue Instagram-Beitraege zeigen willst, ersetze nur die
+    drei Links bei instagramPosts. Es funktionieren Post- und Reel-Links.
+  */
+  const SITE_CONFIG = {
+    instagramHandle: '@haar_ateliier',
+    instagramProfileUrl: 'https://www.instagram.com/haar_ateliier/',
+    instagramPosts: [
+      'https://www.instagram.com/reel/C8C6osAtBxt/',
+      'https://www.instagram.com/reel/C9IpBiTu9Fs/',
+      'https://www.instagram.com/reel/DYnIyeFMXRI/'
+    ],
+    phoneDisplay: '0176 638 22 020',
+    phoneHref: 'tel:+4917663822020',
+    whatsappUrl: 'https://wa.me/4917663822020',
+    email: 'info@haaratelier-gaildorf.de',
+    mapEmbedUrl: 'https://maps.google.com/maps?q=Sperlingweg%201%2C%2074405%20Gaildorf&t=&z=15&ie=UTF8&iwloc=&output=embed'
+  };
+
+  function applySiteConfig(){
+    document.querySelectorAll('[data-config-instagram-label]').forEach(el => {
+      el.textContent = SITE_CONFIG.instagramHandle;
+    });
+
+    document.querySelectorAll('[data-config-instagram-profile]').forEach(link => {
+      link.href = SITE_CONFIG.instagramProfileUrl;
+    });
+
+    document.querySelectorAll('[data-config-instagram-post]').forEach(embed => {
+      const postUrl = SITE_CONFIG.instagramPosts[Number(embed.dataset.configInstagramPost)];
+      const wrap = embed.closest('.insta-embed-wrap');
+      if (postUrl) {
+        embed.dataset.instgrmPermalink = postUrl;
+        if (wrap) wrap.hidden = false;
+      } else if (wrap) {
+        wrap.hidden = true;
+      }
+    });
+
+    document.querySelectorAll('[data-config-phone]').forEach(link => {
+      link.href = SITE_CONFIG.phoneHref;
+      link.textContent = SITE_CONFIG.phoneDisplay;
+    });
+
+    document.querySelectorAll('[data-config-email]').forEach(link => {
+      link.href = `mailto:${SITE_CONFIG.email}`;
+      link.textContent = SITE_CONFIG.email;
+    });
+
+    document.querySelectorAll('[data-config-whatsapp]').forEach(link => {
+      link.href = SITE_CONFIG.whatsappUrl;
+    });
+
+    document.querySelectorAll('[data-config-map]').forEach(frame => {
+      frame.dataset.src = SITE_CONFIG.mapEmbedUrl;
+      if (frame.src) frame.src = SITE_CONFIG.mapEmbedUrl;
+    });
+  }
+
+  applySiteConfig();
+
   // Consent fuer externe Medien: blockiert Instagram und Google Maps bis zur Zustimmung.
   const consentKey = 'haarAtelierExternalMediaConsent';
   const banner = document.querySelector('[data-cookie-banner]');

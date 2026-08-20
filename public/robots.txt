@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://haaratelier-gaildorf.de/sitemap.xml
